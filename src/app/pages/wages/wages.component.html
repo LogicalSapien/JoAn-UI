@@ -94,6 +94,29 @@
 </div>
 <!-- Page content -->
 <div class="container-fluid mt--7">
+  <div class="card" >
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <form>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-control-label" for="job-name">Job name</label>
+              <input type="text" id="job-name" class="form-control form-control-alternative" placeholder="Job name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-control-label" for="country">Country</label>
+              <input type="text" id="country" class="form-control form-control-alternative" placeholder="Country">
+            </div>
+          </div>
+        </div>
+      </form>
+      <a class="btn btn-primary" (click)="getAverageSalary()">Search</a>
+    </div>
+  </div>
+  
   <!-- Table -->
   <!-- todo Hiding temporarity with d-none -->
   <div class="row d-none">
