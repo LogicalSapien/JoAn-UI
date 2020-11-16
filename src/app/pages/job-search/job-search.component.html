@@ -97,28 +97,33 @@
   <div class="card" >
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
-      <form>
+      <form  (ngSubmit)="searchJob()" >
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="job-name">Job name</label>
               <input type="text" id="job-name" class="form-control form-control-alternative" placeholder="Job name"
-                [(ngModel)]="jobName" [ngModelOptions]="{standalone: true}">
+                [(ngModel)]="jobSearch.query" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="country">Country</label>
-              <input type="text" id="country" class="form-control form-control-alternative" placeholder="Country"
-              [(ngModel)]="country" [ngModelOptions]="{standalone: true}">
+              <ng-select [items]="countryList"
+                      bindLabel="name" 
+                      bindValue="code" 
+                      [(ngModel)]="jobSearch.country" [ngModelOptions]="{standalone: true}">
+            </ng-select>
             </div>
           </div>
         </div>
+        <button type="submit" class="btn btn-primary" (click)="searchJob()">Search</button>
+        <!-- <a class="btn btn-primary" (click)="searchJob()">Search</a> -->
       </form>
-      <a class="btn btn-primary" (click)="getAverageSalary()">Search</a>
+    
     </div>
   </div>
-
+  <ngx-spinner></ngx-spinner>
   <div class="row mt-2">
     <div class="col">
       <div class="card shadow">
@@ -131,13 +136,17 @@
             Total Jobs : <span *ngIf="jobResponse && jobResponse.totalNoJobs">{{jobResponse.totalNoJobs}}</span>
         </p>      
 
-        <div class="ml-4 mt-2" *ngFor="let job of jobResponse.jobDetails">
+        <div class="ml-4 mt-3" *ngFor="let job of jobResponse.jobDetails">
           <span class="h3">
             <span style="color:#2f4eff">{{job.title}}</span> <br/>
             <small class="text-muted-black">
               <span *ngIf="job.company && job.company.displayName"><strong>{{job.company.displayName}}</strong></span>&nbsp;,&nbsp;
               <span *ngIf="job.location && job.location.displayName">{{job.location.displayName}}</span><br/>
-              Min Salary : {{job.salaryMin}}, Max Salary : {{job.salaryMax}}
+              Min Salary : {{job.salaryMin}}, Max Salary : {{job.salaryMax}}<br/>
+              Contract Type : {{job.contractType}}<br/>
+              {{job.description}}<br />
+              <a *ngIf="job.redirectUrl" href="{{job.redirectUrl}}" class="btn btn-secondary btn-sm active" target="_blank">View Details & Apply</a> 1 Week ago
+
             </small>
           </span>
         </div>

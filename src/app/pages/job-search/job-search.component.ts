@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { JobSearch } from 'src/app/models/job/job-search';
+import { Pagination } from 'src/app/models/pagination';
+import { DataService } from 'src/app/services/data.service';
 import { JobSearchService } from 'src/app/services/job-search.service';
 
 @Component({
@@ -8,21 +12,37 @@ import { JobSearchService } from 'src/app/services/job-search.service';
 })
 export class JobSearchComponent implements OnInit {
 
-  jobName: string;
+  jobSearch: JobSearch = new JobSearch();
+  countryList: any[] = [];
   country: string;
   jobResponse = {jobDetails:[]};
 
-  constructor(private jobSearchService: JobSearchService) { }
+  constructor(private jobSearchService: JobSearchService, private spinner: NgxSpinnerService, private dataService: DataService) { }
 
   ngOnInit() {
-  }
-
-  getAverageSalary() {
-    this.jobSearchService.getAverageSalary(this.jobName, this.country).subscribe(response => {
+    // fetch countries
+    this.dataService.getCountries().subscribe(response => {
+      this.countryList = response;
       console.log(response);
-      this.jobResponse = response;
     }, error => {
       console.log(error);
+    });
+
+    // set default pagination
+    this.jobSearch.pagination = new Pagination();
+    this.jobSearch.pagination.page = 1;
+    this.jobSearch.pagination.size = 10;
+  }
+
+  searchJob() {
+    this.spinner.show();
+    this.jobSearchService.searchJob(this.jobSearch).subscribe(response => {
+      console.log(response);
+      this.jobResponse = response;
+      this.spinner.hide();
+    }, error => {
+      console.log(error);
+      this.spinner.hide();
     });
   }
 

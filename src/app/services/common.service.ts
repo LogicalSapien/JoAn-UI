@@ -17,6 +17,11 @@ export class CommonService {
       .pipe(catchError(this.handleError<any>(url)));
   }
 
+  post(url: string, postData): Observable<any> {
+    return this.http.post(this.apiUrl + url, postData, this.getHeaderOptions())
+      .pipe(catchError(this.handleError<any>(url)));
+  }
+
   getHeaderOptions() {
     const headers = {
       'Content-Type' : 'application/json',
