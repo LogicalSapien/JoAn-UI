@@ -23,6 +23,7 @@ export class JobSearchComponent implements OnInit {
     // fetch countries
     this.dataService.getCountries().subscribe(response => {
       this.countryList = response;
+      this.jobSearch.country = this.countryList[0].code;
       console.log(response);
     }, error => {
       console.log(error);

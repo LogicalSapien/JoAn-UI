@@ -109,7 +109,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="country">Country</label>
-              <ng-select [items]="countryList"
+              <ng-select [items]="countryList"  [clearable]="false"
                       bindLabel="name" 
                       bindValue="code" 
                       [(ngModel)]="jobSearch.country" [ngModelOptions]="{standalone: true}">
@@ -130,11 +130,11 @@
         <div class="card-header border-0">
           <h3 class="mb-0">Search Response</h3>
         </div>
-        <p class="ml-4">Average Minimum Salary : <span *ngIf="jobResponse && jobResponse.averageMinSalary">{{jobResponse.averageMinSalary}}</span><br />
+        <!-- <p class="ml-4">Average Minimum Salary : <span *ngIf="jobResponse && jobResponse.averageMinSalary">{{jobResponse.averageMinSalary}}</span><br />
           Average Minimum Salary : <span *ngIf="jobResponse && jobResponse.averageMaxSalary">{{jobResponse.averageMaxSalary}}</span><br />
             Fetched Jobs : <span *ngIf="jobResponse && jobResponse.fetchedJobs">{{jobResponse.fetchedJobs}}</span><br />
             Total Jobs : <span *ngIf="jobResponse && jobResponse.totalNoJobs">{{jobResponse.totalNoJobs}}</span>
-        </p>      
+        </p>       -->
 
         <div class="ml-4 mt-3" *ngFor="let job of jobResponse.jobDetails">
           <span class="h3">
