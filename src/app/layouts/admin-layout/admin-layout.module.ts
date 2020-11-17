@@ -14,6 +14,8 @@ import { JobSearchComponent } from '../../pages/job-search/job-search.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -25,7 +27,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgbModule,
     ClipboardModule,
     NgxSpinnerModule,
-    NgSelectModule
+    NgSelectModule,
+    InfiniteScrollModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [

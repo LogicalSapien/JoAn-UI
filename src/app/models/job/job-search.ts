@@ -41,4 +41,9 @@ export class JobSearch {
    * Search Query.
    */
   pagination: Pagination;
+
+  /**
+   * Enable pagination View - if disabled it'll  show infine scroll.
+   */
+  paginatedView: boolean;
 }

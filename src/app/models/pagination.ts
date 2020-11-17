@@ -13,6 +13,11 @@ export class Pagination {
   /**
    * Sort field.
    */
-  sort: String;    
+  sort: String;  
+  
+  /**
+   * Total count.
+   */
+  count: number;
 
 }
